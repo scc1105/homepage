@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>RecyclerView 基本用法 | Scarletsky</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="android,recyclerview," />
+  
+
+  <meta name="description" content="#基本用法
+
+在 XML 中添加 &amp;lt;android.support.v7.widget.RecyclerView/&amp;gt;
+
+编写继承 RecyclerView.Adapter&amp;lt;RecyclerViewAdapter.ViewHolder&amp;gt; 的 Adapter
+
+Constructor
+编写继承 RecyclerView.ViewHolder 的 ViewHolder
+onCre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RecyclerView 基本用法">
+<meta property="og:url" content="http://scarletsky.github.io/2015/06/29/recyclerview-basic-usage/index.html">
+<meta property="og:site_name" content="Scarletsky">
+<meta property="og:description" content="#基本用法
+
+在 XML 中添加 &amp;lt;android.support.v7.widget.RecyclerView/&amp;gt;
+
+编写继承 RecyclerView.Adapter&amp;lt;RecyclerViewAdapter.ViewHolder&amp;gt; 的 Adapter
+
+Constructor
+编写继承 RecyclerView.ViewHolder 的 ViewHolder
+onCre">
+<meta property="og:updated_time" content="2016-02-29T04:37:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RecyclerView 基本用法">
+<meta name="twitter:description" content="#基本用法
+
+在 XML 中添加 &amp;lt;android.support.v7.widget.RecyclerView/&amp;gt;
+
+编写继承 RecyclerView.Adapter&amp;lt;RecyclerViewAdapter.ViewHolder&amp;gt; 的 Adapter
+
+Constructor
+编写继承 RecyclerView.ViewHolder 的 ViewHolder
+onCre">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40690820-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-recyclerview-basic-usage" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">RecyclerView 基本用法</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.06.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Scarletsky</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/android/">android</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://scarletsky.github.io/2015/06/29/recyclerview-basic-usage/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>#基本用法</p>
+<ul>
+<li><p>在 XML 中添加 <code>&lt;android.support.v7.widget.RecyclerView/&gt;</code></p>
+</li>
+<li><p>编写继承 <code>RecyclerView.Adapter&lt;RecyclerViewAdapter.ViewHolder&gt;</code> 的 <code>Adapter</code></p>
+<ul>
+<li><code>Constructor</code></li>
+<li>编写继承 <code>RecyclerView.ViewHolder</code> 的 <code>ViewHolder</code></li>
+<li><code>onCreateViewHolder</code></li>
+<li><code>onBindViewHolder</code></li>
+<li><code>getItemCount</code></li>
+</ul>
+</li>
+<li><p>设置 <code>RecyclerView</code></p>
+<ul>
+<li><code>setLayoutManager</code></li>
+<li><code>setAdapter</code></li>
+<li><code>setItemAnimator</code>(可选)</li>
+<li><code>addItemDecoration</code>(可选)</li>
+</ul>
+</li>
+</ul>
+<p>#XML<br>新建 xml，添加 <code>RecyclerView</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:fab=&quot;http://schemas.android.com/apk/res-auto&quot;</div><div class="line">    android:orientation=&quot;vertical&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;&gt;</div><div class="line"></div><div class="line">    &lt;android.support.v7.widget.RecyclerView</div><div class="line">        android:id=&quot;@+id/my_recyclerview&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot; /&gt;</div><div class="line"></div><div class="line">&lt;/RelativeLayout&gt;</div></pre></td></tr></table></figure>
+<p>#ViewHolder</p>
+<p>我们以前使用 <code>ListView</code> 的时候，会用以下的方式来提高 <code>ListView</code> 的性能:</p>
+<ul>
+<li>用 <code>convertView</code> 来减少 <code>LayoutInflater.inflate</code> 的使用</li>
+<li>用 <code>ViewHolder</code> 来减少 <code>findViewById</code> 的使用</li>
+</ul>
+<p><code>RecyclerView</code> 标准化了 <code>ViewHolder</code> 来缓存昂贵 <code>findViewById</code> 的结果。</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">public static MyViewHolder extends RecyclerView.ViewHolder &#123;</div><div class="line"></div><div class="line">    public TextView mTitle;</div><div class="line">    public TextView mSubtitle;</div><div class="line"></div><div class="line">    public MyViewHolder (View v) &#123;</div><div class="line">        super(v);</div><div class="line">        mTitle = (TextView) v.findViewById(R.id.title);</div><div class="line">        mSubtitle = (TextView) v.findViewById(R.id.subtitle);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>PS: 一般 <code>ViewHolder</code> 会编写在 <code>Adapter</code> 的内部。</p>
+<p>#Adapter</p>
+<p>我们需要继承 <code>RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt;</code> 来编写我们自己的 <code>Adapter</code> 。编写我们自己的 <code>Adapter</code> 的时候，最重要的是要重写 <code>onCreateViewHolder</code> 和 <code>onBindViewHolder</code> 方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">public class MyAdapter extends RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt; &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public RecyclerView.ViewHolder onCreateViewHolder (ViewGroup parent, int viewType) &#123;</div><div class="line">        View v = LayoutInflater.from(ctx).inflate(R.layout.my_adapter, parent, false);</div><div class="line">        return new ViewHolder(v);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onBindViewHolder (RecyclerView.ViewHolder h, int position) &#123;</div><div class="line">        MyViewHolder holder = (MyViewHolder) h;</div><div class="line">        holder.mTitle.setText(&quot;This is my title&quot;);</div><div class="line">        holder.mSubtitle.setText(&quot;This is my subtitle&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int getItemCount() &#123;</div><div class="line">        return data.size();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，在这个例子中我们的 <code>MyAdapter</code> 存放的是 <code>&lt;RecyclerView.ViewHolder&gt;</code>，所以在 <code>onCreateViewHolder</code> 中返回的也必须是 <code>&lt;RecyclerView.ViewHolder&gt;</code>，而在 <code>onBindViewHolder</code> 的回调中，我们拿到的也是 <code>RecyclerView.ViewHolder</code>，要把它强转成我们之前编写的 <code>MyViewHolder</code> 之后才能正常使用。</p>
+<p>#RecyclerView<br>最后只要设置一下 <code>RecyclerView</code> 就能使用了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recyclerview);</div><div class="line">mRecyclerView.setLayoutManager(new LinearLayoutManager(this));</div><div class="line">mRecyclerView.setAdapter(adapter);</div></pre></td></tr></table></figure>
+<p>#参考资料<br><a href="http://wobushi.ren/recyclerview.html" target="_blank" rel="external">RecyclerView全攻略</a><br><a href="http://blog.csdn.net/lmj623565791/article/details/45059587" target="_blank" rel="external">Android RecyclerView 使用完全解析 体验艺术般的控件</a></p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持 scarletsky</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/03/15/html5-canvas-tricks/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/07/05/android-support-design-library-experience/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'scarletskygithubio';
+    
+    var disqus_url = 'http://scarletsky.github.io/2015/06/29/recyclerview-basic-usage/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//scarletskygithubio.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

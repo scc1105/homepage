@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript 常用技巧 | Scarletsky</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="javascript," />
+  
+
+  <meta name="description" content="字符串操作首字母大写str.replace(/\b\w+/g, function (word) &amp;#123;    return word.substring(0, 1).toLowerCase() + word.substring(1);&amp;#125;);
+截取字符串最后几位str.substring(str.length-X)
+进制转换d.toString(16)    (十进制 -&amp;gt; 十">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 常用技巧">
+<meta property="og:url" content="http://scarletsky.github.io/2015/01/26/javascript-tricks/index.html">
+<meta property="og:site_name" content="Scarletsky">
+<meta property="og:description" content="字符串操作首字母大写str.replace(/\b\w+/g, function (word) &amp;#123;    return word.substring(0, 1).toLowerCase() + word.substring(1);&amp;#125;);
+截取字符串最后几位str.substring(str.length-X)
+进制转换d.toString(16)    (十进制 -&amp;gt; 十">
+<meta property="og:updated_time" content="2016-02-29T04:36:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 常用技巧">
+<meta name="twitter:description" content="字符串操作首字母大写str.replace(/\b\w+/g, function (word) &amp;#123;    return word.substring(0, 1).toLowerCase() + word.substring(1);&amp;#125;);
+截取字符串最后几位str.substring(str.length-X)
+进制转换d.toString(16)    (十进制 -&amp;gt; 十">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40690820-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串操作"><span class="toc-text">字符串操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#首字母大写"><span class="toc-text">首字母大写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截取字符串最后几位"><span class="toc-text">截取字符串最后几位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进制转换"><span class="toc-text">进制转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移除左边多余的-0"><span class="toc-text">移除左边多余的 0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成随机字符串"><span class="toc-text">生成随机字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#is-start-with"><span class="toc-text">is-start-with?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#is-end-with"><span class="toc-text">is-end-with?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析-Base64"><span class="toc-text">解析 Base64</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组操作"><span class="toc-text">数组操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取最后数组中最后一个元素"><span class="toc-text">获取最后数组中最后一个元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤重复元素"><span class="toc-text">过滤重复元素</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日期操作"><span class="toc-text">日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取当前时间戳"><span class="toc-text">获取当前时间戳</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-javascript-tricks" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">JavaScript 常用技巧</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.01.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Scarletsky</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://scarletsky.github.io/2015/01/26/javascript-tricks/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><h2 id="首字母大写"><a href="#首字母大写" class="headerlink" title="首字母大写"></a>首字母大写</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">str.replace(<span class="regexp">/\b\w+/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">word</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> word.substring(<span class="number">0</span>, <span class="number">1</span>).toLowerCase() + word.substring(<span class="number">1</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="截取字符串最后几位"><a href="#截取字符串最后几位" class="headerlink" title="截取字符串最后几位"></a>截取字符串最后几位</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">str.substring(str.length-X)</div></pre></td></tr></table></figure>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">d.toString(<span class="number">16</span>)    (十进制 -&gt; 十六进制)</div><div class="line"><span class="built_in">parseInt</span>(‘ff’, <span class="number">16</span>) (十六进制 -&gt; 十进制)</div></pre></td></tr></table></figure>
+<h2 id="移除左边多余的-0"><a href="#移除左边多余的-0" class="headerlink" title="移除左边多余的 0"></a>移除左边多余的 0</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 用正则, '000.00' -&gt; 0.00</span></div><div class="line"><span class="comment">// 基于 http://stackoverflow.com/questions/594325/truncate-leading-zeros-of-a-string-in-javascript</span></div><div class="line">str.replace(<span class="regexp">/^[0]&#123;2&#125;/</span>, <span class="string">''</span>);</div><div class="line"></div><div class="line"><span class="comment">// 用 parseInt , '000123' -&gt; '123'</span></div><div class="line"><span class="comment">// http://stackoverflow.com/questions/6676488/remove-leading-zeros-from-a-number-in-javascript</span></div><div class="line"><span class="built_in">parseInt</span>(str, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<h2 id="生成随机字符串"><a href="#生成随机字符串" class="headerlink" title="生成随机字符串"></a>生成随机字符串</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">Math</span>.random().toString(<span class="number">36</span>).substring(<span class="number">7</span>)</div><div class="line"><span class="comment">// 出自 http://stackoverflow.com/questions/1349404/generate-a-string-of-5-random-characters-in-javascript</span></div></pre></td></tr></table></figure>
+<h2 id="is-start-with"><a href="#is-start-with" class="headerlink" title="is-start-with?"></a>is-start-with?</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">string.lastIndexOf(str, <span class="number">0</span>) === <span class="number">0</span></div><div class="line">string.substring(<span class="number">0</span>, str.length) === str</div><div class="line"><span class="comment">// 出自 http://stackoverflow.com/questions/646628/how-to-check-if-a-string-startswith-another-string</span></div></pre></td></tr></table></figure>
+<h2 id="is-end-with"><a href="#is-end-with" class="headerlink" title="is-end-with?"></a>is-end-with?</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 出自 http://stackoverflow.com/questions/280634/endswith-in-javascript</span></div></pre></td></tr></table></figure>
+<h2 id="解析-Base64"><a href="#解析-Base64" class="headerlink" title="解析 Base64"></a>解析 Base64</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> base64str = <span class="string">'this is base64 string'</span>;</div><div class="line">Buffer(base64str, <span class="string">'base64'</span>).toString();</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="数组操作"><a href="#数组操作" class="headerlink" title="数组操作"></a>数组操作</h1><h2 id="获取最后数组中最后一个元素"><a href="#获取最后数组中最后一个元素" class="headerlink" title="获取最后数组中最后一个元素"></a>获取最后数组中最后一个元素</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">arr.slice(<span class="number">-1</span>).pop() <span class="comment">// 简洁</span></div><div class="line">arr[arr.length - <span class="number">1</span>] <span class="comment">// 快速</span></div><div class="line"><span class="comment">// 出自 http://stackoverflow.com/questions/3216013/get-the-last-item-in-an-array</span></div></pre></td></tr></table></figure>
+<h2 id="过滤重复元素"><a href="#过滤重复元素" class="headerlink" title="过滤重复元素"></a>过滤重复元素</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">v, i</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> arr.indexOf(v) === i;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="日期操作"><a href="#日期操作" class="headerlink" title="日期操作"></a>日期操作</h1><h2 id="获取当前时间戳"><a href="#获取当前时间戳" class="headerlink" title="获取当前时间戳"></a>获取当前时间戳</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">+<span class="keyword">new</span> <span class="built_in">Date</span></div><div class="line"><span class="comment">// 出自 http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript</span></div></pre></td></tr></table></figure>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持 scarletsky</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/01/13/html5-drag-and-drop-api/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/01/27/javascript-upload-slice-file-using-blob/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'scarletskygithubio';
+    
+    var disqus_url = 'http://scarletsky.github.io/2015/01/26/javascript-tricks/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//scarletskygithubio.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
